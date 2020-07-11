@@ -9,6 +9,11 @@ export function request(config) {
     timeout: 5000
   })
 
+  axiosInstance.interceptors.request.use(req => {
+    req.headers.Authorization = window.sessionStorage.getItem('token')
+    return req
+  })
+
   axiosInstance.interceptors.response.use(res => {
     return res
   })
